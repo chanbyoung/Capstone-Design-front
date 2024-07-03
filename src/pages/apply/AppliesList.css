@@ -1,0 +1,84 @@
+.applies-list-container {
+  padding: 20px;
+  max-width: 800px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  margin: 100px auto; /* 상하 여백을 동일하게 설정하여 중간에 배치 */
+}
+
+.applies-list-container h1 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.post-section {
+  margin-bottom: 40px;
+  padding: 20px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
+}
+
+.status-section {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  background-color: #fff;
+}
+
+.status-section h3 {
+  margin-bottom: 10px;
+  color: #6f42c1;
+  border-bottom: 2px solid #6f42c1;
+  padding-bottom: 5px;
+  font-size: 18px;
+}
+
+.applies-list-container ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.apply-item {
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.apply-item:hover {
+  background-color: #e2e6ea;
+  transform: translateY(-2px);
+}
+
+.apply-item p {
+  margin: 5px 0;
+  font-size: 14px;
+  color: #333;
+}
+
+.apply-item strong {
+  color: #555;
+}
+
+.apply-item:nth-child(even) {
+  background-color: #eef2f5;
+}
+
+.apply-item:nth-child(odd) {
+  background-color: #f8f9fa;
+}
+
+.apply-status {
+  font-weight: bold;
+  color: #007bff;
+}

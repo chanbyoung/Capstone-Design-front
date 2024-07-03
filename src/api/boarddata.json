@@ -1,0 +1,60 @@
+{
+  "boards": [
+      {
+          "boardId": 1,
+          "title": "사용법 관련 문의",
+          "slug": "how-to-use",
+          "publisher": "김우현",
+          "contents": "두리끼리 사용법에 대해서 알려주세요.",
+          "commenter": "운영자",
+          "comment": "사용법 안내 보시면 됩니다.",
+          "date" : "2024-01-17",
+          "views" : 100
+      },
+      {
+        "boardId": 2,
+        "title": "로그인 오류",
+        "slug": "login-error",
+        "publisher": "최서린",
+        "contents": "로그인 도중 오류가 발생하여 로그인이 잘 되질 않아요",
+        "commenter": "운영자",
+        "comment": "얼른 개선하겠습니다.",
+        "date" : "2024-01-17",
+        "views" : 100
+      },
+      {
+        "boardId": 3,
+        "title": "탈퇴 신청",
+        "slug": "withdrawal",
+        "publisher": "김우현2",
+        "contents": "탈퇴 신청은 어떻게 해야하나요?",
+        "commenter": "운영자",
+        "comment": "이러이러한 절차로 진행하시면 되겠습니다.",
+        "date" : "2024-01-17",
+        "views" : 100
+      },
+      {
+        "boardId": 4,
+        "title": "추가 요청사항",
+        "slug": "additional-request",
+        "publisher": "박찬병",
+        "contents": "프로젝트 및 스터디 홍보 배너를 홈 화면에 추가해주세요",
+        "commenter": "운영자",
+        "comment": "추후에 논의 후 서비스에 추가해보도록 하겠습니다.",
+        "date" : "2024-01-17",
+        "views" : 100
+      },
+      {
+        "boardId": 5,
+        "title": "서비스 홍보",
+        "slug": "service-promotion",
+        "publisher": "김우현3",
+        "contents": "이러이러한 앱을 만들었는데 한번 오셔서 체험해보세요~",
+        "commenter": "김우현4",
+        "comment": "좋네요",
+        "date" : "2024-01-17",
+        "views" : 100
+      }
+    ]
+    
+}

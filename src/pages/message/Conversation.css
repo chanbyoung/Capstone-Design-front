@@ -1,0 +1,55 @@
+.conversation-container {
+  padding: 20px;
+  margin-top: 50px;
+
+}
+
+.message-list {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column; /* 기본적으로 메시지를 위에서 아래로 배치 */
+  overflow-y: auto;
+  max-height: 400px;
+}
+
+.message-list li {
+  display: flex;
+  justify-content: flex-start; /* 기본적으로 메시지를 왼쪽에 배치 */
+  margin-bottom: 10px;
+  width: 100%; /* 전체 너비 사용 */
+}
+
+.message-list li.sent {
+  justify-content: flex-end; /* 보낸 메시지는 오른쪽에 배치 */
+}
+
+.message-content {
+  padding: 10px;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  max-width: 70%; /* 메시지 내용의 최대 너비를 제한 */
+}
+
+.sent .message-content {
+  background-color: #d1e7dd;
+}
+
+.received .message-content {
+  background-color: #f8d7da;
+}
+
+.message-input-container {
+  display: flex;
+  margin-top: 20px;
+}
+
+.message-input-container input {
+  flex: 1;
+  padding: 10px;
+  margin-right: 10px;
+}
+
+.message-input-container button {
+  padding: 10px;
+}

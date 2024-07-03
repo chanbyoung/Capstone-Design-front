@@ -1,0 +1,80 @@
+.projectInformation {
+  width: 100vw;
+  height: 100vh;
+  margin-top: 100px;
+}
+
+.projectInfoHeader {
+  display: flex;
+  justify-content: center;
+}
+
+.headerInfo {
+  display: flex;
+  flex-direction: column;
+  margin-top: 50px;
+}
+
+.headerInfo > .headerInfoTitle {
+  display: flex;
+}
+
+/*이상한 곳에 적용됨..*/
+.heartIcon {
+  margin-left: 10px;
+  font-size: 30px;
+}
+
+.recru {
+  display: flex;
+  justify-content: center;
+  width: 80px;
+  background-color: #C2A4FF;
+  border-radius: 5px;
+  margin-top: 20px;
+  margin-left: 50%; /*애매함*/
+}
+
+.recru > p {
+  text-align: center;
+}
+
+.projectInfoHeader > img {
+  width: 500px;
+  margin-top: 50px;
+  margin-right: 100px;
+}
+
+.projectInfoMain {
+  margin: 40px;
+}
+
+.section {
+  margin-bottom: 60px;
+}
+
+.sectionTitle {
+  margin-bottom: 10px;
+}
+
+.contents {
+  margin-top: 10px;
+}
+
+.period {
+  font-size: 21px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+
+.recruitmentDiv {
+  display: flex;
+}
+
+.recruitmentDiv > button {
+  padding-left: 5px;
+  padding-right: 5px;
+  margin-left: 10px;
+  border: 0;
+  background-color: #C2A4FF;
+}

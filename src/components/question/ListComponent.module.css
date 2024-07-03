@@ -1,0 +1,46 @@
+.ListComponent {
+  margin: 90px 40px 0px 40px;
+}
+
+.ListComponent > h1 {
+  text-align: center;
+  margin: 50px;
+}
+
+.ListComponent header {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  border-top: 1px solid black;
+  background-color: #fafafa;
+}
+
+.listMain main {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+  padding: 20px;
+}
+
+.headerQno,
+.qno {
+  flex: 1;
+  margin: 0px 50px;
+}
+
+.headerTitle,
+.title {
+  flex: 2;
+  margin: 0px 30px;
+}
+
+.headerCreateAt,
+.createdAt {
+  flex: 1;
+}
+
+/* .qno,
+.title,
+.createdAt {
+  cursor: pointer;
+} */

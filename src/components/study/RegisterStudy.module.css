@@ -1,0 +1,173 @@
+body {
+  font-family: "Noto Sans KR", sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.RegisterProjectHeader {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+}
+
+.RegisterProjectHeader header h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #424242;
+}
+
+.RegisterProjectMain {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  margin: 20px auto; /* 수평 가운데 정렬을 위한 추가 */
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 800px;
+}
+
+.RegisterProjectMain h3 {
+  color: #424242;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+.RegisterProjectMain .projectName input,
+.RegisterProjectMain .projectInfo textarea {
+  width: 100%;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 20px;
+  box-sizing: border-box;
+}
+
+.RegisterProjectMain .projectName input {
+  height: 50px;
+}
+
+.RegisterProjectMain .projectInfo textarea {
+  height: 150px;
+  resize: none;
+}
+
+.RegisterProjectMain .recruitmentDiv {
+  margin-bottom: 20px;
+}
+
+.RegisterProjectMain .recruitmentDiv div {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.RegisterProjectMain .recruitmentDiv input {
+  width: 100%;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.RegisterProjectMain .recruitmentDiv button {
+  background-color: #c2a4ff;
+  color: #ffffff;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.RegisterProjectMain .recruitmentDiv button:hover {
+  background-color: #b39ddb;
+}
+
+.RegisterProjectMain .buttons {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.RegisterProjectMain .buttons button {
+  font-size: 1.2rem;
+  color: #ffffff;
+  background-color: #6c63ff;
+  border: none;
+  padding: 15px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.RegisterProjectMain .buttons button:hover {
+  background-color: #5752d9;
+}
+
+/* 추가적인 스타일 */
+.RegisterProjectMain .projectInfo label,
+.RegisterProjectMain .recruitmentDiv label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #666;
+}
+
+.RegisterProjectMain .projectInfo input[type="date"] {
+  width: calc(50% - 10px);
+  margin-bottom: 10px;
+}
+
+.RegisterProjectMain .projectInfo div {
+  display: flex;
+  gap: 20px;
+}
+
+.RegisterProjectMain .projectName h3,
+.RegisterProjectMain .projectInfo h3,
+.RegisterProjectMain .recruitmentDiv h3,
+.RegisterProjectMain .language h3 {
+  margin-top: 0;
+}
+
+.RegisterProjectMain .projectName,
+.RegisterProjectMain .projectInfo,
+.RegisterProjectMain .recruitmentDiv,
+.RegisterProjectMain .language {
+  margin-bottom: 40px;
+}
+
+.studyCruit {
+  width: 100px;
+}
+
+.buttonDiv {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+.buttonDiv .registerButton,
+.buttonDiv .cancelButton {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: black;
+  background-color: transparent;
+  border: 1px solid #c2a4ff;
+  padding: 10px 30px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  display: inline-block;
+  text-align: center;
+  text-decoration: none;
+}
+
+.buttonDiv .registerButton:hover,
+.buttonDiv .cancelButton:hover {
+  background-color: #b39ddb;
+}

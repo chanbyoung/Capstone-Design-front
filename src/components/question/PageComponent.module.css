@@ -1,0 +1,9 @@
+.PageComponent {
+  display: flex;
+  justify-content: center;
+  margin: 30px 20px;
+}
+
+.PageComponent .pageNum {
+  margin: 0px 10px;
+}

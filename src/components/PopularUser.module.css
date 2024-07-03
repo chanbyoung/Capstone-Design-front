@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+.likeUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 200px;
+  height: 160px;
+  border: 3px solid #e0e0e0;
+  border-radius: 10px;
+  margin: 0 20px;
+  padding: 10px;
+}
+.photo {
+  width: 150px;
+  height: 100px;
+  margin: 10px;
+}
+
+.mainletter{
+  font-size: 18px;
+  margin-top: 10px;
+}

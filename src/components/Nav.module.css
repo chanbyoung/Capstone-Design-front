@@ -1,0 +1,222 @@
+/*데스크탑*/
+@media (min-width: 992px) {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar {
+    width: 100vw;
+    height: 40px;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    background-color: #f0efef;
+    opacity: 1;
+    flex-direction: row;
+    padding: 20px;
+    top: 0;
+    left: 0;
+  }
+
+  .Logo {
+    width: 30px;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+  }
+
+  ul > .navProject {
+    font-size: 18px;
+    font-weight: 800;
+    margin-left: 10px;
+  }
+
+  ul > .userList {
+    display: flex;
+    justify-content: flex-end;
+    width: 70vw;
+    margin-right: 40px;
+  }
+
+  .userList li button {
+    border-style: none;
+    font-size: 16px;
+    padding-left: 8px;
+    border-left: 2px solid gray;
+    cursor: pointer;
+  }
+
+  ul .login {
+    padding-right: 10px;
+    border-right: 2px solid gray;
+  }
+
+  li {
+    float: left;
+    white-space: nowrap;
+    margin-left: 10px;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .navProject > a {
+    color: #c2a4ff;
+  }
+}
+
+/*태블릿*/
+@media (min-width: 768px) and (max-width: 991px) {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar {
+    width: 100vw;
+    height: 40px;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    background-color: #f0efef;
+    flex-direction: row;
+    padding: 20px;
+    top: 0;
+    left: 0;
+  }
+
+  .Logo {
+    width: 30px;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+  }
+
+  ul > .navProject {
+    font-size: 18px;
+    font-weight: 800;
+    margin-left: 10px;
+  }
+
+  ul > .userList {
+    display: flex;
+    justify-content: flex-end;
+    width: 60vw;
+    margin-right: 40px;
+  }
+
+  .userList li button {
+    border-style: none;
+    font-size: 16px;
+    padding-left: 8px;
+    border-left: 2px solid gray;
+    cursor: pointer;
+  }
+
+  ul .login {
+    padding-right: 10px;
+    border-right: 2px solid gray;
+  }
+
+  li {
+    float: left;
+    white-space: nowrap;
+    margin-left: 10px;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .navProject > a {
+    color: #c2a4ff;
+  }
+}
+
+/*모바일*/
+@media (max-width: 767px) {
+  * {
+    margin: 0;
+    padding: 0;
+  }
+
+  .navbar {
+    width: 100vw;
+    height: 40px;
+    position: fixed;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: right;
+    background-color: #f0efef;
+    flex-direction: row;
+    padding: 20px;
+    top: 0;
+    left: 0;
+  }
+
+  .Logo {
+    width: 30px;
+  }
+
+  ul {
+    display: flex;
+    align-items: center;
+    list-style: none;
+  }
+
+  ul > .navProject {
+    font-size: 18px;
+    font-weight: 800;
+    margin-left: 10px;
+  }
+
+  ul > .userList {
+    display: flex;
+    justify-content: flex-end;
+    width: 50vw;
+    margin-right: 40px;
+  }
+
+  .userList li button {
+    border-style: none;
+    font-size: 16px;
+    padding-left: 8px;
+    border-left: 2px solid gray;
+    cursor: pointer;
+  }
+
+  ul .login {
+    padding-right: 10px;
+    border-right: 2px solid gray;
+  }
+
+  li {
+    float: left;
+    white-space: nowrap;
+    margin-left: 10px;
+  }
+
+  a {
+    text-decoration: none;
+    color: black;
+  }
+
+  .navProject > a {
+    color: #c2a4ff;
+  }
+}

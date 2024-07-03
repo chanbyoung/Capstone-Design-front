@@ -1,0 +1,44 @@
+.ReadComponent {
+  margin: 100px 30px 0px 30px;
+}
+
+.title {
+  background-color: #eeeeee;
+  font-size: 20px;
+  font-weight: 600;
+  border-top: 1px solid black;
+  padding: 25px;
+}
+
+.info {
+  display: flex;
+  border-bottom: 1px solid #eeeeee;
+  padding: 25px;
+  font-size: 14px;
+}
+
+.info > .writer {
+  border-right: 1px solid #9e9e9e;
+  padding-right: 10px;
+  margin-right: 10px;
+}
+
+.content {
+  padding: 25px;
+  font-size: 18px;
+}
+
+.ReadComponent button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 80px;
+  height: 30px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 500;
+  margin-left: 20px;
+}

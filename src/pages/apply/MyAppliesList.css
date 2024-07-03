@@ -1,0 +1,48 @@
+.my-applies-list-container {
+  padding: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  margin-top: 100px;
+  justify-content: center;
+}
+
+.my-applies-list-container h1 {
+  text-align: center;
+  color: #333;
+}
+
+.status-section {
+  margin-top: 20px;
+}
+
+.status-section h2 {
+  color: #333;
+}
+
+.my-applies-list-container ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.apply-item {
+  padding: 15px;
+  margin: 10px 0;
+  background-color: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.3s;
+}
+
+.apply-item:hover {
+  background-color: #e2e6ea;
+  transform: translateY(-2px);
+}
+
+.apply-item p {
+  margin: 5px 0;
+}

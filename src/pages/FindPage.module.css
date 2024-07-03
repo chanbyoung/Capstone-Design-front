@@ -1,0 +1,91 @@
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
+
+.header {
+  margin: 30px;
+  white-space: nowrap;
+}
+
+.findPage {
+  margin: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.formFind > form {
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+  width: 400px;
+}
+
+.inputGroup {
+  margin-bottom: 10px;
+}
+
+input {
+  padding-left: 30px;
+  width: 360px;
+  height: 65px;
+  border: 1px solid #bdbdbd;
+  border-radius: 7px;
+  font-size: 17px;
+  margin-bottom: 10px;
+}
+
+.sendCodeButton,
+.verifyCodeButton {
+  width: 100%;
+  height: 65px;
+  border: none;
+  border-radius: 8px;
+  font-size: 19px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 10px;
+}
+
+.sendCodeButton {
+  background-color: #c2a4ff;
+  color: white;
+}
+
+.verifyCodeButton {
+  background-color: #c2a4ff;
+  color: white;
+}
+
+.findLinks button {
+  background-color: #c2a4ff;
+  color: white;
+  width: 100%;
+  margin-top: 10px;
+}
+
+.toggleButtons {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.toggleButton {
+  width: 50%;
+  height: 65px;
+  border: none;
+  border-radius: 8px;
+  font-size: 19px;
+  font-family: "Noto Sans KR", sans-serif;
+  font-weight: 500;
+  cursor: pointer;
+  margin-top: 10px;
+  background-color: #f0f0f0;
+  color: black;
+}
+
+.toggleButton.active {
+  background-color: #c2a4ff;
+  color: white;
+}
