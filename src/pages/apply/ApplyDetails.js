@@ -82,6 +82,9 @@ const ApplyDetails = () => {
           <h2>{apply.postTitle} 관련 지원서입니다.</h2>
         </p>
         <p>
+         <strong>지원자:</strong> {apply.memberName}
+        </p>
+        <p>
           <strong>지원 분야:</strong> {apply.fieldCategory}
         </p>
         <p>
@@ -102,7 +105,7 @@ const ApplyDetails = () => {
             </>
           )}
           <button onClick={startConversation}>지원자와 채팅</button>
-          <button onClick={goToPostDetail}>지원한 게시글 바로가기</button>
+          <button onClick={goToPostDetail}>내 게시글 바로가기</button>
         </div>
       </div>
     </div>

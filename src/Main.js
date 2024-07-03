@@ -12,9 +12,6 @@ import UpdateStudy from "./pages/study/UpdateStudy";
 import MyPage from "./pages/MyPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
-import KakaoRedirectPage from "./pages/KakaoRedirectPage";
-import QuestionPage from "./pages/question/ListPage";
-import QuestionRead from "./pages/question/ReadPage";
 import FreeBoard from "./pages/FreeBoard";
 import Applycation from "./pages/Applycation";
 import StudyDetail from "./components/study/StudyDetail";
@@ -43,9 +40,6 @@ function Main() {
           <Route path="/RegisterProject" element={<RegisterProject />} />
           <Route path="/UpdateProject/:idx" element={<UpdateProject />} />
           <Route path="/ProjectInformation/:idx" element={<ProjectDetail />} />
-          <Route path="/Question" element={<QuestionPage />} />
-          <Route path="/Question/list" element={<QuestionPage />} />
-          <Route path="/Question/read/:qno" element={<QuestionRead />} />
           <Route path="/StudyList" element={<StudyListPage />} />
           <Route path="/RegisterStudy" element={<RegisterStudy />} />
           <Route path="/UpdateStudy/:idx" element={<UpdateStudy />} />
@@ -54,10 +48,6 @@ function Main() {
           <Route path="/MyPage" element={<MyPage />} />
           <Route path="/LoginPage" element={<LoginPage />} />
           <Route path="/FindPage" element={<FindPage/>}/>
-          <Route
-            path="/oauth/redirected/kakao"
-            element={<KakaoRedirectPage />}
-          ></Route>
           <Route path="/RegisterPage" element={<RegisterPage />} />
           <Route path="/FreeBoard" element={<FreeBoard />} />
           <Route path="/BoardUpdate/:idx" element={<BoardUpdate />} />
