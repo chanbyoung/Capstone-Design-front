@@ -5,7 +5,7 @@ const instance = axios.create({
   withCredentials: true,
 });
 
-//요청 인터셉터 설정
+// Request interceptor to add Authorization header
 instance.interceptors.request.use(
   (config) => {
     const accessToken = localStorage.getItem("accessToken");
