@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/static/css/main.908dc465.css",
+    "main.js": "/static/js/main.b99744a9.js",
+    "static/media/react.png": "/static/media/react.2f2532db663fd5ec5f95.png",
+    "static/media/home_instruction.png": "/static/media/home_instruction.5b7f71f620d9c8734963.png",
+    "static/media/DefaultProjectImg.png": "/static/media/DefaultProjectImg.fc044cbd105ca68edfe6.png",
+    "static/media/DefaultStudyImg.png": "/static/media/DefaultStudyImg.cbc31c48a630f9706c8e.png",
+    "static/media/paletteLogo.png": "/static/media/paletteLogo.29b9bef320b31c6ffc07.png",
+    "static/media/heartAfter.png": "/static/media/heartAfter.83ec8e6343f1a152c64e.png",
+    "static/media/heartBefore.png": "/static/media/heartBefore.4779cf6ca7b38649ba35.png",
+    "index.html": "/index.html",
+    "main.908dc465.css.map": "/static/css/main.908dc465.css.map",
+    "main.b99744a9.js.map": "/static/js/main.b99744a9.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.908dc465.css",
+    "static/js/main.b99744a9.js"
+  ]
+}
