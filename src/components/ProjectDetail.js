@@ -32,6 +32,7 @@ function ProjectDetail() {
         memberId={project.memberId} //추가부분
         startDate={project.startDate} // 추가 부분
         endDate={project.endDate} // 추가 부분
+        isLiked={project.isLiked}
       />
     </div>
   );

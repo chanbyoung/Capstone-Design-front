@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Project.module.css";
 import axios from "../lib/axios";
 import { useNavigate } from "react-router-dom";
@@ -12,10 +12,26 @@ const Project = ({
   memberId,
   startDate,
   endDate,
+  isLiked: initialIsLiked, // 서버에서 받아온 '좋아요' 상태 플래그
 }) => {
-  // startDate, endDate 추가
+  console.log("Initial isLiked:", initialIsLiked);
   const navigate = useNavigate();
   const { idx } = useParams();
+  
+  const [isLiked, setIsLiked] = useState(initialIsLiked); // 처음에 서버에서 받은 값으로 설정
+  useEffect(() => {
+    setIsLiked(initialIsLiked);
+  }, [initialIsLiked]);
+  console.log("Is Liked state:", isLiked);
+
+  const toggleLike = async () => {
+    try {
+      await axios.post(`/api/likes/${idx}`);
+      setIsLiked(!isLiked); // 좋아요 상태를 토글
+    } catch (err) {
+      console.error("Failed to toggle like:", err);
+    }
+  };
 
   const moveToUpdate = () => {
     navigate(`/UpdateProject/${idx}`);
@@ -58,6 +74,9 @@ const Project = ({
             작성자와 채팅
           </button>
         </div>
+        <button onClick={toggleLike} className={styles.likeButton}>
+          {isLiked ? "♥" : "♡"} {/* 좋아요 상태에 따른 하트 모양 */}
+        </button>
       </header>
       <main className={styles.projectInfoMain}>
         <div className={styles.section}>
