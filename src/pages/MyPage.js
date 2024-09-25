@@ -13,6 +13,8 @@ function MyPage() {
   const [recruitproject, setRecruitProject] = useState([]);
   const [applyproject, setApplyProject] = useState([]);
   const [progressproject, setProgressProject] = useState([]);
+  const [likeproject, setLikeProject] = useState([]);
+
 
   useEffect(() => {
     const fetchUserData = async () => {
@@ -33,6 +35,7 @@ function MyPage() {
           setRecruitProject(response.data.recruitingProject);
           setApplyProject(response.data.myApplyProject);
           setProgressProject(response.data.progressProject);
+          setLikeProject(response.data.myLikeProject);
         } else {
           alert("토큰이 없음");
         }
@@ -103,7 +106,23 @@ function MyPage() {
             ))}
           </div>
         </div>
-
+        <div className={styles.pastProject}>
+          <h3>관심있는 게시글</h3>
+          <div className={styles.inner}>
+            {likeproject.map((project) => (
+                <div className={styles.projectSummary} key={project.projectId}>
+                  <Link to={`/ProjectInformation/${project.id}`}>
+                    <img
+                        className={styles.photo}
+                        alt="img"
+                        src={require(`../assets/DefaultProjectImg.png`)}
+                    />
+                    <p className={styles.pmainletter}>{project.title}</p>
+                  </Link>
+                </div>
+            ))}
+          </div>
+        </div>
         <div className={styles.pastProject}>
           <h3>종료된 프로젝트</h3>
           <div className={styles.inner}>
