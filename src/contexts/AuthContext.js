@@ -17,9 +17,12 @@ export function AuthProvider({ children }) {
         setIsLoggedIn(true);
         return accessToken;
       } catch (error) {
-        console.error("Failed to refresh token:", error);
-        logout();
-        throw error;
+        if (error.response && error.response.status === 403) {
+          logout();
+          console.error("Failed to refresh token:", error);
+          alert("다시 로그인해 주세요.");
+          window.location.href = "/LoginPage";
+        }
       }
     } else {
       logout();
