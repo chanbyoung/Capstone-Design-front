@@ -1,20 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styles from "./Study.module.css";
 import axios from "../../lib/axios";
 import { useNavigate } from "react-router-dom";
 import { useParams } from "react-router-dom";
 
 const Study = ({
-  title,
-  content,
-  fieldList = [],
-  imageUrl = {},
-  memberId,
-  startDate,
-  endDate,
-}) => {
+                 title,
+                 content,
+                 fieldList = [],
+                 imageUrl = {},
+                 memberId,
+                 startDate,
+                 endDate,
+                 isLiked: initialIsLiked, // 서버에서 받아온 '좋아요' 상태 플래그
+                 isOwner, // 권한 여부를 나타내는 props
+               }) => {
   const navigate = useNavigate();
   const { idx } = useParams();
+
+  const [isLiked, setIsLiked] = useState(initialIsLiked); // 처음에 서버에서 받은 값으로 설정
+  useEffect(() => {
+    setIsLiked(initialIsLiked);
+  }, [initialIsLiked]);
+
+  const toggleLike = async () => {
+    try {
+      await axios.post(`/api/likes/${idx}`);
+      setIsLiked(!isLiked); // 좋아요 상태를 토글
+    } catch (err) {
+      console.error("Failed to toggle like:", err);
+    }
+  };
 
   const moveToUpdate = () => {
     navigate(`/UpdateStudy/${idx}`);
@@ -47,7 +63,6 @@ const Study = ({
   };
 
   return (
-    <>
       <div className={styles.studyInformation}>
         <header className={styles.studyInfoHeader}>
           <div className={styles.headerInfo}>
@@ -58,6 +73,9 @@ const Study = ({
               작성자와 채팅
             </button>
           </div>
+          <button onClick={toggleLike} className={styles.likeButton}>
+            {isLiked ? "♥" : "♡"} {/* 좋아요 상태에 따른 하트 모양 */}
+          </button>
         </header>
         <main className={styles.studyInfoMain}>
           <div className={styles.section}>
@@ -75,31 +93,42 @@ const Study = ({
             <hr />
             <div className={styles.contents}>
               {fieldList.map((field, index) => (
-                <div key={index} className={styles.recruitmentDiv}>
-                  <p>{field.fieldCategory}&nbsp;</p>
-                  <p>
-                    {field.currentRecruitment} / {field.totalRecruitment}
-                  </p>
-                  <button onClick={() => moveToApply(field.fieldCategory)}>
-                    지원
-                  </button>
-                </div>
+                  <div key={index} className={styles.recruitmentDiv}>
+                    <p>{field.fieldCategory}&nbsp;</p>
+                    <p>
+                      {field.currentRecruitment} / {field.totalRecruitment}
+                    </p>
+                    <button onClick={() => moveToApply(field.fieldCategory)}>
+                      지원
+                    </button>
+                  </div>
               ))}
+            </div>
+          </div>
+          <div className={styles.section}>
+            <h3 className={styles.sectionTitle}>기술</h3>
+            <hr />
+            <div className={styles.contents}>
+              <p>기술 이미지</p>
             </div>
           </div>
         </main>
         <footer>
           <div className={styles.inner}>
-            <button onClick={moveToUpdate} className={styles.btn}>
-              수정하기
-            </button>
-            <button onClick={deleteStudy} className={styles.btn}>
-              삭제하기
-            </button>
+            {/* isOwner가 true일 때만 버튼을 보여줌 */}
+            {isOwner && (
+                <>
+                  <button onClick={moveToUpdate} className={styles.btn}>
+                    수정하기
+                  </button>
+                  <button onClick={deleteStudy} className={styles.btn}>
+                    삭제하기
+                  </button>
+                </>
+            )}
           </div>
         </footer>
       </div>
-    </>
   );
 };
 

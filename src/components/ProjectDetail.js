@@ -33,6 +33,7 @@ function ProjectDetail() {
         startDate={project.startDate} // 추가 부분
         endDate={project.endDate} // 추가 부분
         isLiked={project.isLiked}
+        isOwner={project.isOwner}
       />
     </div>
   );

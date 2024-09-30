@@ -26,6 +26,8 @@ function StudyDetail() {
         fieldList={study.fieldList}
         imageUrl={study.image} // 이미지 URL 추가
         memberId={study.memberId} //추가부분
+        isLiked={study.isLiked}
+        isOwner={study.isOwner}
       />
     </div>
   );
