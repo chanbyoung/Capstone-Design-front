@@ -3,11 +3,11 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "../lib/axios";
 
-function ProjectSummary() {
+function HomeSummary() {
   const [projectList, setProjectList] = useState([]);
 
   const getProjectList = async () => {
-    const response = await axios.get("/api/posts/likePosts", {
+    const response = await axios.get("/api/homes", {
       params:{
         category: "PROJECT",
       },
@@ -40,4 +40,4 @@ function ProjectSummary() {
   );
 }
 
-export default ProjectSummary;
+export default HomeSummary;

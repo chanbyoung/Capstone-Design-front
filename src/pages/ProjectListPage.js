@@ -20,10 +20,6 @@ function ProjectListPage() {
   return (
     <>
       <div className={styles.ProjectListPage}>
-        <h1 className={styles.mainletter}>&#128187; 신규 프로젝트</h1>
-        <div className={styles.newProject}>
-          <ProjectSummary />
-        </div>
         <h1 className={styles.mainletter}>&#128150; 관심 많은 프로젝트</h1>
         <div className={styles.likeProject}>
           <ProjectSummary />
