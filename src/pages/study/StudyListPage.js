@@ -21,10 +21,6 @@ function StudyListPage() {
   return (
     <>
       <div className={styles.projectListPage}>
-        <h1 className={styles.mainletter}>📖 신규 스터디</h1>
-        <div className={styles.newProject}>
-          <StudySummary />
-        </div>
         <h1 className={styles.mainletter}>&#128150; 관심 많은 스터디</h1>
         <div className={styles.likeProject}>
           <StudySummary />
