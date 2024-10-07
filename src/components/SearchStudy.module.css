@@ -102,3 +102,14 @@
   font-size: 18px;
   font-weight: bold;
 }
+.userInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.createdBy {
+  font-size: 14px;
+  font-weight: 400;
+}

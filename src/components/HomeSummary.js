@@ -1,24 +1,36 @@
-import styles from "./ProjectSummary.module.css";
-import { Link } from "react-router-dom";
+import styles from "./HomeSummary.module.css";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "../lib/axios";
+import { IconButton, Popover, Typography, Button } from "@mui/material";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
 function HomeSummary() {
   const [projectList, setProjectList] = useState([]);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedMember, setSelectedMember] = useState(""); // 회원 정보 상태
+  const navigate = useNavigate();
 
   const getProjectList = async () => {
-    const response = await axios.get("/api/homes", {
-      params:{
-        category: "PROJECT",
-      },
-    }); 
-    // 새로운 엔드포인트 호출
-    setProjectList(response.data); // 리스트 데이터 설정
+    const response = await axios.get("/api/homes");
+    setProjectList(response.data);
   };
 
   useEffect(() => {
     getProjectList();
   }, []);
+
+  const handleUserClick = (event, createdBy) => {
+    setAnchorEl(event.currentTarget);
+    setSelectedMember(createdBy); // 클릭한 회원 정보 저장
+  };
+
+  const handleClosePopover = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "user-popover" : undefined;
 
   return (
     <>
@@ -33,9 +45,39 @@ function HomeSummary() {
               />
               <p className={styles.mainletter}>{project.title}</p>
             </Link>
+            {/* 프로젝트 이름 아래에 사용자 정보 표시 */}
+            <div className={styles.userInfo}>
+              <IconButton
+                onClick={(event) => handleUserClick(event, project.createdBy)}
+              >
+                <AccountCircleIcon />
+              </IconButton>
+              <p className={styles.createdBy}>{project.createdBy}</p>
+            </div>
           </div>
         ))}
       </div>
+
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClosePopover}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+      >
+        <Typography sx={{ p: 2 }}>{selectedMember}님의 정보로 이동하시겠습니까?</Typography>
+        <Button
+          onClick={() => {
+            handleClosePopover();
+            navigate(`/MemberPage/${selectedMember}`); // 사용자 정보 페이지로 이동
+          }}
+        >
+          사용자 정보 보기
+        </Button>
+      </Popover>
     </>
   );
 }

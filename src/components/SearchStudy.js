@@ -1,26 +1,29 @@
-//eslint-disable-next-line
-import * as React from "react";
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Button,
   InputLabel,
   MenuItem,
   FormControl,
   Select,
+  IconButton,
+  Popover,
+  Typography,
 } from "@mui/material";
-import styles from "./SearchStudy.module.css";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle"; // 사용자 아이콘
 import { Link } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import Divider from "@mui/material/Divider";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "../lib/axios";
+import styles from "./SearchStudy.module.css";
 
-/**검색 부분*/
 function SearchStudy() {
   const [views, setViews] = useState("최신순");
   const [search, setSearch] = useState("");
   const [filteredProject, setFilteredProject] = useState([]);
   const [projectList, setProjectList] = useState([]);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [selectedMember, setSelectedMember] = useState("");
 
   const getProjectList = async () => {
     const response = await axios.get("/api/posts", {
@@ -32,6 +35,7 @@ function SearchStudy() {
     const sortedProject = sortProject(response.data.content, views);
     setFilteredProject(sortedProject);
   };
+
   useEffect(() => {
     getProjectList();
   }, []);
@@ -50,14 +54,16 @@ function SearchStudy() {
     const searchtext = event.target.value.toLowerCase();
     setSearch(searchtext);
   };
+
   const onSearchHandler = () => {
     const filtered = projectList.filter((project) =>
       project.title.toLowerCase().includes(search)
     );
     setFilteredProject(filtered);
   };
+
   const handleKeyDown = (event) => {
-    if (event.key === `Enter`) {
+    if (event.key === "Enter") {
       event.preventDefault();
       onSearchHandler();
     }
@@ -74,11 +80,23 @@ function SearchStudy() {
     setFilteredProject(sortedProject);
   };
 
-  //등록하기 버튼 함수
   const navigate = useNavigate();
+
   function moveToResisterStudy() {
     navigate("/RegisterStudy");
   }
+
+  const handleMemberClick = (event, createdBy) => {
+    setAnchorEl(event.currentTarget);
+    setSelectedMember(createdBy);
+  };
+
+  const handleClosePopover = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "member-popover" : undefined;
 
   return (
     <>
@@ -141,11 +159,8 @@ function SearchStudy() {
         </div>
         <div className={styles.inner}>
           {filteredProject.map((project) => (
-            <div className={styles.projectSummary}>
-              <Link
-                to={`/ProjectInformation/${project.id}`}
-                key={project.projectId}
-              >
+            <div className={styles.projectSummary} key={project.projectId}>
+              <Link to={`/ProjectInformation/${project.id}`}>
                 <img
                   className={styles.photo}
                   alt="img"
@@ -153,10 +168,39 @@ function SearchStudy() {
                 />
                 <p className={styles.pmainletter}>{project.title}</p>
               </Link>
+              <div style={{ display: "flex", alignItems: "center" }}>
+                <IconButton
+                  onClick={(event) => handleMemberClick(event, project.createdBy)}
+                >
+                  <AccountCircleIcon />
+                </IconButton>
+                <p className={styles.pmainletter}>{project.createdBy}</p>
+              </div>
             </div>
           ))}
         </div>
       </div>
+
+      <Popover
+        id={id}
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClosePopover}
+        anchorOrigin={{
+          vertical: "bottom",
+          horizontal: "left",
+        }}
+      >
+        <Typography sx={{ p: 2 }}>{selectedMember}님의 정보로 이동하시겠습니까?</Typography>
+        <Button
+          onClick={() => {
+            handleClosePopover();
+            navigate(`/MemberPage/${selectedMember}`);
+          }}
+        >
+          사용자 정보 보기
+        </Button>
+      </Popover>
     </>
   );
 }

@@ -11,6 +11,7 @@ import StudyListPage from "./pages/study/StudyListPage";
 import RegisterStudy from "./components/study/RegisterStudy";
 import UpdateStudy from "./pages/study/UpdateStudy";
 import MyPage from "./pages/MyPage";
+import MemberPage from "./pages/MemberPage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import FreeBoard from "./pages/FreeBoard";
@@ -49,6 +50,7 @@ function Main() {
             <Route path="/RegisterPage" element={<RegisterPage />} />
             <Route path="/FreeBoard" element={<FreeBoard />} />
             <Route path="/BoardInformation/:idx" element={<BoardDetail />} />
+            <Route path="/MemberPage/:nickname" element={<MemberPage />} />            
             <Route element={<PrivateRoute />}>
               <Route path="/RegisterProject" element={<RegisterProject />} />
               <Route path="/UpdateProject/:idx" element={<UpdateProject />} />
