@@ -3,20 +3,6 @@ import StudySummary from "../../components/study/StudySummary";
 import SearchStudy from "../../components/SearchStudy";
 
 function StudyListPage() {
-  // const [studyList, setStudyList] = useState([]);
-
-  // //스터디 리스트 받아오는 함수
-  // const getStudyList = async () => {
-  //   const response = await axios.get("/api/posts", {
-  //     params: {
-  //       category: "STUDY",
-  //     },
-  //   });
-  //   setStudyList(response.data.content);
-  // };
-  // useEffect(() => {
-  //   getStudyList();
-  // }, []);
 
   return (
     <>

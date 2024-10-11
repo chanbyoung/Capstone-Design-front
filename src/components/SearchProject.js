@@ -178,24 +178,25 @@ function SearchProject() {
         </div>
         <div className={styles.inner}>
           {filteredProject.map((project) => (
-            <div className={styles.projectSummary} key={project.projectId}>
-              <Link to={`/ProjectInformation/${project.id}`}>
-                <img
-                  className={styles.photo}
-                  alt="img"
-                  src={require(`../assets/DefaultProjectImg.png`)}
-                />
-                <p className={styles.pmainletter}>{project.title}</p>
-              </Link>
-              <div style={{ display: "flex", alignItems: "center" }}>
-                <IconButton
-                  onClick={(event) => handleMemberClick(event, project.createdBy)}
-                >
-                  <AccountCircleIcon />
-                </IconButton>
-                <p className={styles.pmainletter}>{project.createdBy}</p>
+              <div className={styles.projectSummary} key={project.projectId}>
+                <Link to={`/ProjectInformation/${project.id}`}>
+                  <img
+                      className={styles.photo}
+                      alt="img"
+                      src={require(`../assets/DefaultProjectImg.png`)}
+                  />
+                  <p className={styles.mainletter}>{project.title}</p>
+                </Link>
+                {/* 사용자 정보 표시 및 팝오버 */}
+                <div className={styles.userInfo}>
+                  <IconButton
+                      onClick={(event) => handleMemberClick(event, project.createdBy)}
+                  >
+                    <AccountCircleIcon />
+                  </IconButton>
+                  <p className={styles.createdBy}>{project.createdBy}</p>
+                </div>
               </div>
-            </div>
           ))}
         </div>
       </div>
@@ -217,7 +218,7 @@ function SearchProject() {
             navigate(`/MemberPage/${selectedMember}`); // 멤버 정보 페이지로 이동
           }}
         >
-          멤버 정보 보기
+          사용자 정보 보기
         </Button>
       </Popover>
     </>

@@ -98,8 +98,28 @@
   border-radius: 8px 8px 0 0;
 }
 
+/* 프로젝트 제목 스타일 */
 .pmainletter {
   margin: 10px 0 0 0;
   font-size: 18px;
   font-weight: bold;
+}
+
+/* 사용자 정보 표시 스타일 */
+.userInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.userInfo .MuiIconButton-root {
+  padding: 5px;
+  margin-right: 8px;
+}
+
+.createdBy {
+  font-size: 14px;
+  color: #333;
+  font-weight: 500;
 }

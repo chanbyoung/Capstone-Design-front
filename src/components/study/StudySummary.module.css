@@ -1,39 +1,50 @@
-@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+KR&display=swap");
 
-* {
-  margin: 0;
-  padding: 0;
-  font-family: "Noto Sans KR", sans-serif;
-}
 .inner {
   display: flex;
-  width: 1200px;
-  overflow: scroll;
-}
-.projectSummary {
-  display: flex;
+  flex-direction: row;
   align-items: center;
-  justify-content: center;
-  width: 240px;
-  height: 200px;
-  border: 3px solid #e0e0e0;
-  border-radius: 10px;
-  margin: 0 20px;
-  padding: 10px;
+  gap: 20px;
+  padding: 20px;
+  overflow: scroll; /* 가로 스크롤 활성화 */
+  background-color: #fafafa;
 }
-.photo {
+
+.projectSummary {
   width: 240px;
+  flex-shrink: 0; /* 크기가 줄어들지 않게 조정 */
+  padding: 10px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  transition: transform 0.3s;
+}
+
+.projectSummary:hover {
+  transform: translateY(-5px);
+}
+
+.projectSummary img {
+  width: 100%;
   height: 160px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 0;
 }
 
 .mainletter {
+  margin: 10px 0 0 0;
   font-size: 18px;
-  margin-bottom: 10px;
-  padding-left: 5px;
+  font-weight: bold;
 }
 
-.subletter {
+.userInfo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.createdBy {
   font-size: 14px;
-  opacity: 0.5;
-  margin: 10px;
+  font-weight: 400;
 }

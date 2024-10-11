@@ -45,11 +45,9 @@ function HomeSummary() {
               />
               <p className={styles.mainletter}>{project.title}</p>
             </Link>
-            {/* 프로젝트 이름 아래에 사용자 정보 표시 */}
             <div className={styles.userInfo}>
               <IconButton
-                onClick={(event) => handleUserClick(event, project.createdBy)}
-              >
+                onClick={(event) => handleUserClick(event, project.createdBy)}>
                 <AccountCircleIcon />
               </IconButton>
               <p className={styles.createdBy}>{project.createdBy}</p>
@@ -57,7 +55,6 @@ function HomeSummary() {
           </div>
         ))}
       </div>
-
       <Popover
         id={id}
         open={open}
