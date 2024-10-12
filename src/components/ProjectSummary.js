@@ -1,6 +1,7 @@
 import styles from "./ProjectSummary.module.css";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "../lib/axios";
 import { Button, IconButton, Popover, Typography } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
@@ -10,6 +11,7 @@ function ProjectSummary() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedMember, setSelectedMember] = useState("");
   const [open, setOpen] = useState(false); // 팝오버 상태 추가
+  const navigate = useNavigate();
 
   const getProjectList = async () => {
     const response = await axios.get("/api/posts/likePosts", {

@@ -37,11 +37,11 @@ function HomeSummary() {
       <div className={styles.inner}>
         {projectList.map((project) => (
           <div className={styles.projectSummary} key={project.id}>
-            <Link to={`/ProjectInformation/${project.id}`}>
+            <Link to={`/${project.category === "스터디" ? "StudyInformation" : "ProjectInformation"}/${project.id}`}>
               <img
                 className={styles.photo}
                 alt="img"
-                src={require(`../assets/DefaultProjectImg.png`)}
+                src={require(`../assets/${project.category === "스터디" ? "DefaultStudyImg.png" : "DefaultProjectImg.png"}`)}
               />
               <p className={styles.mainletter}>{project.title}</p>
             </Link>

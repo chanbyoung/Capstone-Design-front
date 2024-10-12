@@ -7,7 +7,6 @@ import heartAfterImg from "../assets/heartAfter.png";
 
 function MyPage() {
   const [user, setUser] = useState(null);
-  //하트 이미지
   const [imageSrc, setImageSrc] = useState(heartBeforeImg);
   const [isClicked, setIsClicked] = useState(false);
   const [recruitproject, setRecruitProject] = useState([]);
@@ -15,22 +14,18 @@ function MyPage() {
   const [progressproject, setProgressProject] = useState([]);
   const [likeproject, setLikeProject] = useState([]);
 
-
   useEffect(() => {
     const fetchUserData = async () => {
       try {
-        //로컬 스토리지에서 토큰 가져오기
         const token = localStorage.getItem("accessToken");
         console.log(token);
 
         if (token) {
-          //토큰이 있다면 서버에 GET 요청 보내 유저 정보 가져옴
           const response = await axios.get("/api/members/member", {
             headers: {
               Authorization: `Bearer ${token}`,
             },
           });
-          //서버에서 받아온 유저 정보로 상태 변경. 컴포넌트 리렌더링
           setUser(response.data);
           setRecruitProject(response.data.recruitingProject);
           setApplyProject(response.data.myApplyProject);
@@ -46,11 +41,21 @@ function MyPage() {
     fetchUserData();
   }, []);
 
+  const getLinkPath = (project) => {
+    return project.category === "스터디"
+      ? `/StudyInformation/${project.id}`
+      : `/ProjectInformation/${project.id}`;
+  };
+
+  const getImageSrc = (project) => {
+    return require(`../assets/${
+      project.category === "스터디" ? "DefaultStudyImg.png" : "DefaultProjectImg.png"
+    }`);
+  };
+
   return (
     <div className={styles.MyPage}>
-      <div
-        className={`${styles.profile} ${styles.flexColumn} ${styles.flexCenter}`}
-      >
+      <div className={`${styles.profile} ${styles.flexColumn} ${styles.flexCenter}`}>
         <div className={styles.profileInfo}>
           <section className={styles.section1}>
             <h2>{user?.nickname}</h2>
@@ -76,12 +81,8 @@ function MyPage() {
           <div className={styles.inner}>
             {recruitproject.map((project) => (
               <div className={styles.projectSummary} key={project.projectId}>
-                <Link to={`/ProjectInformation/${project.id}`}>
-                  <img
-                    className={styles.photo}
-                    alt="img"
-                    src={require(`../assets/DefaultProjectImg.png`)}
-                  />
+                <Link to={getLinkPath(project)}>
+                  <img className={styles.photo} alt="img" src={getImageSrc(project)} />
                   <p className={styles.pmainletter}>{project.title}</p>
                 </Link>
               </div>
@@ -94,46 +95,36 @@ function MyPage() {
           <div className={styles.inner}>
             {applyproject.map((project) => (
               <div className={styles.projectSummary} key={project.projectId}>
-                <Link to={`/ProjectInformation/${project.id}`}>
-                  <img
-                    className={styles.photo}
-                    alt="img"
-                    src={require(`../assets/DefaultProjectImg.png`)}
-                  />
+                <Link to={getLinkPath(project)}>
+                  <img className={styles.photo} alt="img" src={getImageSrc(project)} />
                   <p className={styles.pmainletter}>{project.title}</p>
                 </Link>
               </div>
             ))}
           </div>
         </div>
+
         <div className={styles.pastProject}>
           <h3>관심있는 게시글</h3>
           <div className={styles.inner}>
             {likeproject.map((project) => (
-                <div className={styles.projectSummary} key={project.projectId}>
-                  <Link to={`/ProjectInformation/${project.id}`}>
-                    <img
-                        className={styles.photo}
-                        alt="img"
-                        src={require(`../assets/DefaultProjectImg.png`)}
-                    />
-                    <p className={styles.pmainletter}>{project.title}</p>
-                  </Link>
-                </div>
+              <div className={styles.projectSummary} key={project.projectId}>
+                <Link to={getLinkPath(project)}>
+                  <img className={styles.photo} alt="img" src={getImageSrc(project)} />
+                  <p className={styles.pmainletter}>{project.title}</p>
+                </Link>
+              </div>
             ))}
           </div>
         </div>
+
         <div className={styles.pastProject}>
           <h3>종료된 프로젝트</h3>
           <div className={styles.inner}>
             {progressproject.map((project) => (
               <div className={styles.projectSummary} key={project.projectId}>
-                <Link to={`/ProjectInformation/${project.id}`}>
-                  <img
-                    className={styles.photo}
-                    alt="img"
-                    src={require(`../assets/DefaultProjectImg.png`)}
-                  />
+                <Link to={getLinkPath(project)}>
+                  <img className={styles.photo} alt="img" src={getImageSrc(project)} />
                   <p className={styles.pmainletter}>{project.title}</p>
                 </Link>
               </div>
