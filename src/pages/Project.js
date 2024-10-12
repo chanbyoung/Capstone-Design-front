@@ -95,14 +95,17 @@ const Project = ({
             <hr />
             <div className={styles.contents}>
               {fieldList.map((field, index) => (
+                
                   <div key={index} className={styles.recruitmentDiv}>
                     <p>{field.fieldCategory}&nbsp;</p>
                     <p>
                       {field.currentRecruitment} / {field.totalRecruitment}
                     </p>
+                    {!isOwner &&
                     <button onClick={() => moveToApply(field.fieldCategory)}>
                       지원
                     </button>
+                 }
                   </div>
               ))}
             </div>

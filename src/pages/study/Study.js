@@ -98,9 +98,11 @@ const Study = ({
                     <p>
                       {field.currentRecruitment} / {field.totalRecruitment}
                     </p>
+                    {!isOwner &&
                     <button onClick={() => moveToApply(field.fieldCategory)}>
                       지원
                     </button>
+                 }
                   </div>
               ))}
             </div>
