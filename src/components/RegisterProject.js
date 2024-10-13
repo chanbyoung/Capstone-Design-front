@@ -136,21 +136,24 @@ function RegisterProject() {
         <div className={styles.recruitmentDiv}>
           <h3>모집 직무</h3>
           {fieldList.map((field, index) => (
-            <div key={index}>
-              <input
-                type="text"
-                name="fieldCategory"
-                value={field.fieldCategory}
-                onChange={(event) => handleFieldListChange(index, event)}
-              />
-              <input
-                type="number"
-                name="totalRecruitment"
-                value={field.totalRecruitment}
-                onChange={(event) => handleFieldListChange(index, event)}
-              />
-            </div>
-          ))}
+          <div key={index}>
+          <select
+            name="fieldCategory"
+            value={field.fieldCategory}
+            onChange={(event) => handleFieldListChange(index, event)}>
+            <option value="">선택하세요</option>
+            <option value="BACKEND">백엔드</option>
+            <option value="FRONTEND">프론트엔드</option>
+            <option value="DESIGNER">디자이너</option>
+          </select>
+          <input
+            type="number"
+            name="totalRecruitment"
+            value={field.totalRecruitment}
+            onChange={(event) => handleFieldListChange(index, event)}
+          />
+        </div>
+      ))}
           <button onClick={addField}>직무 추가</button>
         </div>
         <div className={styles.language}>
