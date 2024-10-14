@@ -9,11 +9,10 @@ import {
   Popover,
   Typography,
 } from "@mui/material";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle"; // 사용자 아이콘
-import { Link } from "react-router-dom";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { Link, useNavigate } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import Divider from "@mui/material/Divider";
-import { useNavigate } from "react-router-dom";
 import axios from "../lib/axios";
 import styles from "./SearchProject.module.css";
 
@@ -106,6 +105,24 @@ function SearchProject() {
   return (
     <>
       <div className={styles.SearchProject}>
+       <div>
+          <FormControl sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel>직무</InputLabel>
+            <Select value={job} label="직무" onChange={handleChange1}>
+              <MenuItem value="전체">전체</MenuItem>
+              <MenuItem value="FRONTEND">프론트엔드</MenuItem>
+              <MenuItem value="BACKEND">백엔드</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl sx={{ m: 1, minWidth: 120 }}>
+            <InputLabel>조회수</InputLabel>
+            <Select value={views} label="조회수" onChange={handleChange2}>
+              <MenuItem value="최신순">최신순</MenuItem>
+              <MenuItem value="조회수 높은순">조회수 높은순</MenuItem>
+              <MenuItem value="조회수 낮은순">조회수 낮은순</MenuItem>
+            </Select>
+          </FormControl>
+        </div>
         <div>
           <Paper
             component="form"
@@ -113,7 +130,11 @@ function SearchProject() {
               p: "2px 4px",
               display: "flex",
               alignItems: "center",
-              width: "1200px",
+              width: "100%",
+              maxWidth: "1200px",
+              backgroundColor: "white",
+              borderRadius: "8px",
+              boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
             }}
           >
             <input
@@ -127,7 +148,6 @@ function SearchProject() {
             <Divider sx={{ height: 28, m: 1 }} orientation="vertical" />
             <Button
               className={styles.searchButton1}
-              label="Searchbtn"
               variant="contained"
               color="secondary"
               onClick={onSearchHandler}
@@ -137,7 +157,6 @@ function SearchProject() {
             <Divider sx={{ height: 28, m: 1 }} orientation="vertical" />
             <Button
               className={styles.searchButton2}
-              label="프로젝트 등록하기"
               variant="contained"
               color="secondary"
               onClick={moveToResisterProject}
@@ -146,57 +165,26 @@ function SearchProject() {
             </Button>
           </Paper>
         </div>
-        <div>
-          <FormControl sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel id="demo-simple-select-label">직무</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={job}
-              label="직무"
-              onChange={handleChange1}
-            >
-              <MenuItem value={`전체`}>전체</MenuItem>
-              <MenuItem value={`FRONTEND`}>프론트엔드</MenuItem>
-              <MenuItem value={`BACKEND`}>백엔드</MenuItem>
-            </Select>
-          </FormControl>
-          <FormControl sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel id="demo-simple-select-label">조회수</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={views}
-              label="조회수"
-              onChange={handleChange2}
-            >
-              <MenuItem value={`최신순`}>최신순</MenuItem>
-              <MenuItem value={`조회수 높은순`}>조회수 높은순</MenuItem>
-              <MenuItem value={`조회수 낮은순`}>조회수 낮은순</MenuItem>
-            </Select>
-          </FormControl>
-        </div>
         <div className={styles.inner}>
           {filteredProject.map((project) => (
-              <div className={styles.projectSummary} key={project.projectId}>
-                <Link to={`/ProjectInformation/${project.id}`}>
-                  <img
-                      className={styles.photo}
-                      alt="img"
-                      src={require(`../assets/DefaultProjectImg.png`)}
-                  />
-                  <p className={styles.mainletter}>{project.title}</p>
-                </Link>
-                {/* 사용자 정보 표시 및 팝오버 */}
-                <div className={styles.userInfo}>
-                  <IconButton
-                      onClick={(event) => handleMemberClick(event, project.createdBy)}
-                  >
-                    <AccountCircleIcon />
-                  </IconButton>
-                  <p className={styles.createdBy}>{project.createdBy}</p>
-                </div>
+            <div className={styles.projectSummary} key={project.projectId}>
+              <Link to={`/ProjectInformation/${project.id}`}>
+                <img
+                  className={styles.photo}
+                  alt="img"
+                  src={require(`../assets/DefaultProjectImg.png`)}
+                />
+                <p className={styles.mainletter}>{project.title}</p>
+              </Link>
+              <div className={styles.userInfo}>
+                <IconButton
+                  onClick={(event) => handleMemberClick(event, project.createdBy)}
+                >
+                  <AccountCircleIcon />
+                </IconButton>
+                <p className={styles.createdBy}>{project.createdBy}</p>
               </div>
+            </div>
           ))}
         </div>
       </div>
@@ -211,11 +199,13 @@ function SearchProject() {
           horizontal: "left",
         }}
       >
-        <Typography sx={{ p: 2 }}>{selectedMember}님의 정보로 이동하시겠습니까?</Typography>
+        <Typography sx={{ p: 2 }}>
+          {selectedMember}님의 정보로 이동하시겠습니까?
+        </Typography>
         <Button
           onClick={() => {
             handleClosePopover();
-            navigate(`/MemberPage/${selectedMember}`); // 멤버 정보 페이지로 이동
+            navigate(`/MemberPage/${selectedMember}`);
           }}
         >
           사용자 정보 보기

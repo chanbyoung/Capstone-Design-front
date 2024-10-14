@@ -11,7 +11,7 @@ function StudyListPage() {
         <div className={styles.likeProject}>
           <StudySummary />
         </div>
-        <h1 className={styles.mainletter}>검색</h1>
+        <h1 className={styles.mainletter}>전체 스터디</h1>
         <div className={styles.searchStudy}>
           <SearchStudy />
         </div>

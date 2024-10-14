@@ -102,46 +102,6 @@ function SearchStudy() {
     <>
       <div className={styles.SearchStudy}>
         <div>
-          <Paper
-            component="form"
-            sx={{
-              p: "2px 4px",
-              display: "flex",
-              alignItems: "center",
-              width: "1200px",
-            }}
-          >
-            <input
-              className={styles.search}
-              type="text"
-              placeholder="궁금한 스터디를 검색해보세요!"
-              value={search}
-              onChange={onSearchtext}
-              onKeyDown={handleKeyDown}
-            />
-            <Divider sx={{ height: 28, m: 1 }} orientation="vertical" />
-            <Button
-              className={styles.searchButton1}
-              label="Searchbtn"
-              variant="contained"
-              color="secondary"
-              onClick={onSearchHandler}
-            >
-              검색
-            </Button>
-            <Divider sx={{ height: 28, m: 1 }} orientation="vertical" />
-            <Button
-              className={styles.searchButton2}
-              label="스터디 등록하기"
-              variant="contained"
-              color="secondary"
-              onClick={moveToResisterStudy}
-            >
-              스터디 등록하기
-            </Button>
-          </Paper>
-        </div>
-        <div>
           <FormControl sx={{ m: 1, minWidth: 120 }}>
             <InputLabel id="demo-simple-select-label">조회수</InputLabel>
             <Select
@@ -156,6 +116,48 @@ function SearchStudy() {
               <MenuItem value={`조회수 낮은순`}>조회수 낮은순</MenuItem>
             </Select>
           </FormControl>
+        </div>
+        <div>
+          <Paper
+            component="form"
+            sx={{
+              p: "2px 4px",
+              display: "flex",
+              alignItems: "center",
+              width: "100%",
+              maxWidth: "1200px",
+              backgroundColor: "white",
+              borderRadius: "8px",
+              boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
+            }}
+          >
+            <input
+              className={styles.search}
+              type="text"
+              placeholder="궁금한 스터디를 검색해보세요!"
+              value={search}
+              onChange={onSearchtext}
+              onKeyDown={handleKeyDown}
+            />
+            <Divider sx={{ height: 28, m: 1 }} orientation="vertical" />
+            <Button
+              className={styles.searchButton1}
+              variant="contained"
+              color="secondary"
+              onClick={onSearchHandler}
+            >
+              검색
+            </Button>
+            <Divider sx={{ height: 28, m: 1 }} orientation="vertical" />
+            <Button
+              className={styles.searchButton2}
+              variant="contained"
+              color="secondary"
+              onClick={moveToResisterStudy}
+            >
+              스터디 등록하기
+            </Button>
+          </Paper>
         </div>
         <div className={styles.inner}>
           {filteredProject.map((project) => (
@@ -192,7 +194,8 @@ function SearchStudy() {
           horizontal: "left",
         }}
       >
-        <Typography sx={{ p: 2 }}>{selectedMember}님의 정보로 이동하시겠습니까?</Typography>
+        <Typography sx={{ p: 2 }}>
+          {selectedMember}님의 정보로 이동하시겠습니까?</Typography>
         <Button
           onClick={() => {
             handleClosePopover();
