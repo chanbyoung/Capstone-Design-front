@@ -183,36 +183,36 @@ function SearchProject() {
           </Paper>
         </div>
         <div className={styles.inner}>
-  {filteredProject.map((project) => (
-    <div className={styles.projectSummary} key={project.projectId}>
-      <Link to={`/ProjectInformation/${project.id}`}>
-        <img
-          className={styles.photo}
-          alt="img"
-          src={require(`../assets/DefaultProjectImg.png`)}
-        />
-        <p className={styles.mainletter}>{project.title}</p>
-      </Link>
-      <div className={styles.userInfo}>
-        <IconButton
-          onClick={(event) => handleMemberClick(event, project.createdBy)}
-        >
-          <AccountCircleIcon />
-        </IconButton>
-        <p className={styles.createdBy}>{project.createdBy}</p>
-      </div>
-    </div>
-  ))}
-  <div className={styles.loadMoreButtonContainer}>
-    {hasMore ? (
-      <Button onClick={loadMoreProjects} sx={{ mt: 2 }}>
-        더보기
-      </Button>
-    ) : (
-      <Typography>모든 프로젝트를 불러왔습니다.</Typography>
-    )}
-  </div>
-</div>
+          {filteredProject.map((project) => (
+            <div className={styles.projectSummary} key={project.projectId}>
+              <Link to={`/ProjectInformation/${project.id}`}>
+                <img
+                  className={styles.photo}
+                  alt="img"
+                  src={require(`../assets/DefaultProjectImg.png`)}
+                />
+                <p className={styles.mainletter}>{project.title}</p>
+              </Link>
+              <div className={styles.userInfo}>
+                <IconButton
+                  onClick={(event) => handleMemberClick(event, project.createdBy)}
+                >
+                  <AccountCircleIcon />
+                </IconButton>
+                <p className={styles.createdBy}>{project.createdBy}</p>
+              </div>
+            </div>
+          ))}
+          <div className={styles.loadMoreButtonContainer}>
+            {hasMore ? (
+              <Button onClick={loadMoreProjects} sx={{ mt: 2 }}>
+                더보기
+              </Button>
+            ) : (
+              <Typography>모든 프로젝트를 불러왔습니다.</Typography>
+            )}
+          </div>
+        </div>
       </div>
 
       <Popover
