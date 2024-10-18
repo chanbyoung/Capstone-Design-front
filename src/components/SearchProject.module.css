@@ -68,13 +68,22 @@
   font-size: 16px;
 }
 
-/* 프로젝트 목록 스타일 */
 .inner {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   gap: 20px;
   width: 100%;
+  position: relative; /* Relative positioning to allow absolute positioning of the button */
+  min-height: 400px; /* Adjust this as needed to provide space for the projects */
+}
+
+.loadMoreButtonContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: absolute; /* Position the container absolutely */
+  bottom: -60px; /* Adjust this value to ensure proper positioning */
 }
 
 .projectSummary {

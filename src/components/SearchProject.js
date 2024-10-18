@@ -22,22 +22,33 @@ function SearchProject() {
   const [search, setSearch] = useState("");
   const [filteredProject, setFilteredProject] = useState([]);
   const [projectList, setProjectList] = useState([]);
+  const [cursor, setCursor] = useState(null);
+  const [hasMore, setHasMore] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedMember, setSelectedMember] = useState("");
 
-  const getProjectList = async () => {
+  const getProjectList = async (cursor) => {
     const response = await axios.get("/api/posts", {
       params: {
         category: "PROJECT",
+        cursorCreatedAt: cursor,
       },
     });
-    setProjectList(response.data.content);
-    const sortedProject = sortProject(response.data.content, views);
-    setFilteredProject(sortedProject);
+    const newProjects = response.data.content;
+    const sortedProject = sortProject(newProjects, views);
+
+    setProjectList((prev) => [...prev, ...newProjects]);
+    setFilteredProject((prev) => [...prev, ...sortedProject]);
+    setHasMore(response.data.hasNext);
+    console.log("Has More:", response.data.hasNext); // hasMore 상태 확인
+
+    if (newProjects.length > 0) {
+      setCursor(newProjects[newProjects.length - 1].createdAt);
+    } 
   };
 
   useEffect(() => {
-    getProjectList();
+    getProjectList(null);
   }, []);
 
   const sortProject = (project, order) => {
@@ -84,6 +95,12 @@ function SearchProject() {
     setFilteredProject(sortedProject);
   };
 
+  const loadMoreProjects = () => {
+    if (hasMore) {
+      getProjectList(cursor);
+    }
+  };
+
   const navigate = useNavigate();
 
   function moveToResisterProject() {
@@ -105,7 +122,7 @@ function SearchProject() {
   return (
     <>
       <div className={styles.SearchProject}>
-       <div>
+        <div>
           <FormControl sx={{ m: 1, minWidth: 120 }}>
             <InputLabel>직무</InputLabel>
             <Select value={job} label="직무" onChange={handleChange1}>
@@ -166,27 +183,36 @@ function SearchProject() {
           </Paper>
         </div>
         <div className={styles.inner}>
-          {filteredProject.map((project) => (
-            <div className={styles.projectSummary} key={project.projectId}>
-              <Link to={`/ProjectInformation/${project.id}`}>
-                <img
-                  className={styles.photo}
-                  alt="img"
-                  src={require(`../assets/DefaultProjectImg.png`)}
-                />
-                <p className={styles.mainletter}>{project.title}</p>
-              </Link>
-              <div className={styles.userInfo}>
-                <IconButton
-                  onClick={(event) => handleMemberClick(event, project.createdBy)}
-                >
-                  <AccountCircleIcon />
-                </IconButton>
-                <p className={styles.createdBy}>{project.createdBy}</p>
-              </div>
-            </div>
-          ))}
-        </div>
+  {filteredProject.map((project) => (
+    <div className={styles.projectSummary} key={project.projectId}>
+      <Link to={`/ProjectInformation/${project.id}`}>
+        <img
+          className={styles.photo}
+          alt="img"
+          src={require(`../assets/DefaultProjectImg.png`)}
+        />
+        <p className={styles.mainletter}>{project.title}</p>
+      </Link>
+      <div className={styles.userInfo}>
+        <IconButton
+          onClick={(event) => handleMemberClick(event, project.createdBy)}
+        >
+          <AccountCircleIcon />
+        </IconButton>
+        <p className={styles.createdBy}>{project.createdBy}</p>
+      </div>
+    </div>
+  ))}
+  <div className={styles.loadMoreButtonContainer}>
+    {hasMore ? (
+      <Button onClick={loadMoreProjects} sx={{ mt: 2 }}>
+        더보기
+      </Button>
+    ) : (
+      <Typography>모든 프로젝트를 불러왔습니다.</Typography>
+    )}
+  </div>
+</div>
       </div>
 
       <Popover
