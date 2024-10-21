@@ -56,6 +56,7 @@
   box-shadow: none;
   border: 2px solid #c2a4ff;
 }
+
 /* 셀렉트 박스 스타일 */
 .MuiFormControl-root {
   min-width: 120px;
@@ -74,8 +75,20 @@
   justify-content: center;
   gap: 20px;
   width: 100%;
+  position: relative; /* Relative positioning to allow absolute positioning of the button */
+
 }
 
+/* 더보기 버튼 컨테이너 스타일 */
+.loadMoreButtonContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: absolute;
+  bottom: -60px; /* Adjust this value to ensure proper positioning */
+}
+
+/* 프로젝트 요약 카드 스타일 */
 .projectSummary {
   width: 240px;
   padding: 10px;
@@ -102,14 +115,22 @@
   font-size: 18px;
   font-weight: bold;
 }
+
+/* 사용자 정보 표시 스타일 */
 .userInfo {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  margin-top: 10px;
+}
+
+.userInfo .MuiIconButton-root {
+  padding: 5px;
+  margin-right: 8px;
 }
 
 .createdBy {
   font-size: 14px;
-  font-weight: 400;
+  color: #333;
+  font-weight: 500;
 }

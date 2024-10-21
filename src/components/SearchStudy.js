@@ -9,11 +9,10 @@ import {
   Popover,
   Typography,
 } from "@mui/material";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle"; // 사용자 아이콘
-import { Link } from "react-router-dom";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import { Link, useNavigate } from "react-router-dom";
 import Paper from "@mui/material/Paper";
 import Divider from "@mui/material/Divider";
-import { useNavigate } from "react-router-dom";
 import axios from "../lib/axios";
 import styles from "./SearchStudy.module.css";
 
@@ -22,22 +21,32 @@ function SearchStudy() {
   const [search, setSearch] = useState("");
   const [filteredProject, setFilteredProject] = useState([]);
   const [projectList, setProjectList] = useState([]);
+  const [cursor, setCursor] = useState(null);
+  const [hasMore, setHasMore] = useState(true);
   const [anchorEl, setAnchorEl] = useState(null);
   const [selectedMember, setSelectedMember] = useState("");
 
-  const getProjectList = async () => {
+  const getProjectList = async (cursor) => {
     const response = await axios.get("/api/posts", {
       params: {
         category: "STUDY",
+        cursorCreatedAt: cursor,
       },
     });
-    setProjectList(response.data.content);
-    const sortedProject = sortProject(response.data.content, views);
-    setFilteredProject(sortedProject);
+    const newProjects = response.data.content;
+    const sortedProject = sortProject(newProjects, views);
+
+    setProjectList((prev) => [...prev, ...newProjects]);
+    setFilteredProject((prev) => [...prev, ...sortedProject]);
+    setHasMore(response.data.hasNext);
+
+    if (newProjects.length > 0) {
+      setCursor(newProjects[newProjects.length - 1].createdAt);
+    }
   };
 
   useEffect(() => {
-    getProjectList();
+    getProjectList(null);
   }, []);
 
   const sortProject = (project, order) => {
@@ -80,6 +89,12 @@ function SearchStudy() {
     setFilteredProject(sortedProject);
   };
 
+  const loadMoreProjects = () => {
+    if (hasMore) {
+      getProjectList(cursor);
+    }
+  };
+
   const navigate = useNavigate();
 
   function moveToResisterStudy() {
@@ -103,17 +118,11 @@ function SearchStudy() {
       <div className={styles.SearchStudy}>
         <div>
           <FormControl sx={{ m: 1, minWidth: 120 }}>
-            <InputLabel id="demo-simple-select-label">조회수</InputLabel>
-            <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={views}
-              label="조회수"
-              onChange={handleChange}
-            >
-              <MenuItem value={`최신순`}>최신순</MenuItem>
-              <MenuItem value={`조회수 높은순`}>조회수 높은순</MenuItem>
-              <MenuItem value={`조회수 낮은순`}>조회수 낮은순</MenuItem>
+            <InputLabel>조회수</InputLabel>
+            <Select value={views} label="조회수" onChange={handleChange}>
+              <MenuItem value="최신순">최신순</MenuItem>
+              <MenuItem value="조회수 높은순">조회수 높은순</MenuItem>
+              <MenuItem value="조회수 낮은순">조회수 낮은순</MenuItem>
             </Select>
           </FormControl>
         </div>
@@ -161,26 +170,34 @@ function SearchStudy() {
         </div>
         <div className={styles.inner}>
           {filteredProject.map((project) => (
-              <div className={styles.projectSummary} key={project.projectId}>
-                <Link to={`/ProjectInformation/${project.id}`}>
-                  <img
-                      className={styles.photo}
-                      alt="img"
-                      src={require(`../assets/DefaultProjectImg.png`)}
-                  />
-                  <p className={styles.mainletter}>{project.title}</p>
-                </Link>
-                {/* 사용자 정보 표시 및 팝오버 */}
-                <div className={styles.userInfo}>
-                  <IconButton
-                      onClick={(event) => handleMemberClick(event, project.createdBy)}
-                  >
-                    <AccountCircleIcon />
-                  </IconButton>
-                  <p className={styles.createdBy}>{project.createdBy}</p>
-                </div>
+            <div className={styles.projectSummary} key={project.projectId}>
+              <Link to={`/ProjectInformation/${project.id}`}>
+                <img
+                  className={styles.photo}
+                  alt="img"
+                  src={require(`../assets/DefaultProjectImg.png`)}
+                />
+                <p className={styles.mainletter}>{project.title}</p>
+              </Link>
+              <div className={styles.userInfo}>
+                <IconButton
+                  onClick={(event) => handleMemberClick(event, project.createdBy)}
+                >
+                  <AccountCircleIcon />
+                </IconButton>
+                <p className={styles.createdBy}>{project.createdBy}</p>
               </div>
+            </div>
           ))}
+          <div className={styles.loadMoreButtonContainer}>
+            {hasMore ? (
+              <Button onClick={loadMoreProjects} sx={{ mt: 2 }}>
+                더보기
+              </Button>
+            ) : (
+              <Typography>모든 스터디를 불러왔습니다.</Typography>
+            )}
+          </div>
         </div>
       </div>
 
@@ -195,7 +212,8 @@ function SearchStudy() {
         }}
       >
         <Typography sx={{ p: 2 }}>
-          {selectedMember}님의 정보로 이동하시겠습니까?</Typography>
+          {selectedMember}님의 정보로 이동하시겠습니까?
+        </Typography>
         <Button
           onClick={() => {
             handleClosePopover();
